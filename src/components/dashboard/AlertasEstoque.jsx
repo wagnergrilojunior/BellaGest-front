@@ -46,10 +46,10 @@ export default function AlertasEstoque({ produtos, loading }) {
 
   if (loading) {
     return (
-      <Card className="glass-effect border-0 shadow-lg">
+      <Card className="border-0 shadow-lg bg-white">
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-2">
-            <AlertTriangle className="w-5 h-5 text-amber-500" />
+            <AlertTriangle className="w-5 h-5 text-orange-500" />
             Alertas de Estoque
           </CardTitle>
         </CardHeader>
@@ -70,22 +70,22 @@ export default function AlertasEstoque({ produtos, loading }) {
   }
 
   return (
-    <Card className="glass-effect border-0 shadow-lg">
-      <CardHeader className="pb-4 border-b border-amber-100/50">
+    <Card className="border-0 shadow-lg bg-white">
+      <CardHeader className="pb-4 border-b border-gray-200">
         <CardTitle className="flex items-center gap-2 text-gray-900">
-          <AlertTriangle className="w-5 h-5 text-amber-500" />
+          <AlertTriangle className="w-5 h-5 text-orange-500" />
           Alertas de Estoque
-          <Badge variant="secondary" className="ml-auto bg-amber-100 text-amber-700">
+          <Badge variant="secondary" className="ml-auto bg-orange-100 text-orange-700">
             {produtos.length}
           </Badge>
         </CardTitle>
       </CardHeader>
-      <CardContent className="p-6">
+      <CardContent className="p-5">
         {produtos.length > 0 ? (
           <div className="space-y-4">
             {produtos.map((produto) => (
-              <div key={produto.id} className="flex items-center gap-4 p-4 bg-gradient-to-r from-amber-50/50 to-orange-50/50 rounded-xl border border-amber-100/30">
-                <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-lg flex items-center justify-center shadow-lg">
+              <div key={produto.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center shadow-lg">
                   <Package className="w-6 h-6 text-white" />
                 </div>
                 <div className="flex-1">
@@ -95,7 +95,7 @@ export default function AlertasEstoque({ produtos, loading }) {
                   </p>
                 </div>
                 <div className="text-right">
-                  <Badge variant="outline" className="bg-amber-100 text-amber-700 border-amber-200">
+                  <Badge variant="outline" className="bg-orange-100 text-orange-700 border-orange-200">
                     {produto.quantidade_estoque} {produto.unidade_medida}
                   </Badge>
                   <p className="text-xs text-gray-500 mt-1">

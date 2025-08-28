@@ -16,10 +16,10 @@ const statusColors = {
 export default function AgendamentosHoje({ agendamentos, loading }) {
   if (loading) {
     return (
-      <Card className="glass-effect border-0 shadow-lg">
+      <Card className="border-0 shadow-lg bg-white">
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-rose-500" />
+            <Calendar className="w-5 h-5 text-pink-500" />
             Agendamentos de Hoje
           </CardTitle>
         </CardHeader>
@@ -40,22 +40,22 @@ export default function AgendamentosHoje({ agendamentos, loading }) {
   }
 
   return (
-    <Card className="glass-effect border-0 shadow-lg">
-      <CardHeader className="pb-4 border-b border-rose-100/50">
+    <Card className="border-0 shadow-lg bg-white">
+      <CardHeader className="pb-4 border-b border-gray-200">
         <CardTitle className="flex items-center gap-2 text-gray-900">
-          <Calendar className="w-5 h-5 text-rose-500" />
+          <Calendar className="w-5 h-5 text-pink-500" />
           Agendamentos de Hoje
-          <Badge variant="secondary" className="ml-auto bg-rose-100 text-rose-700">
+          <Badge variant="secondary" className="ml-auto bg-pink-100 text-pink-700">
             {agendamentos.length}
           </Badge>
         </CardTitle>
       </CardHeader>
-      <CardContent className="p-6">
+      <CardContent className="p-5">
         {agendamentos.length > 0 ? (
           <div className="space-y-4">
             {agendamentos.map((agendamento) => (
-              <div key={agendamento.id} className="flex items-center gap-4 p-4 bg-gradient-to-r from-rose-50/50 to-pink-50/50 rounded-xl border border-rose-100/30">
-                <div className="w-12 h-12 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+              <div key={agendamento.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <div className="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center shadow-lg">
                   <User className="w-6 h-6 text-white" />
                 </div>
                 <div className="flex-1">
