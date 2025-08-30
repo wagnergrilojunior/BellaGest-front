@@ -30,6 +30,7 @@ import {
   Settings
 } from 'lucide-react';
 import { bellagestClient } from '../api/bellagestClient';
+import { setEmpresaSelecionada as saveEmpresaSelecionada, getEmpresaSelecionada } from '../components/utils/empresaContext';
 
 export default function Layout({ children }) {
   const navigate = useNavigate();
@@ -47,18 +48,30 @@ export default function Layout({ children }) {
     const carregarEmpresas = async () => {
       try {
         setLoading(true);
+        console.log('🏢 Carregando empresas para usuário:', user?.papel?.nome);
         const response = await bellagestClient.get('/empresas/');
+        console.log('🏢 Empresas carregadas:', response);
         setEmpresas(response);
         
-        // Se o usuário tem papel de Proprietário, selecionar a primeira empresa
-        if (user?.papel?.nome === 'Proprietário' && response.length > 0) {
-          setEmpresaSelecionada(response[0]);
+        // Verificar se há empresa salva no localStorage
+        const empresaSalva = getEmpresaSelecionada();
+        console.log('🏢 Empresa salva no localStorage:', empresaSalva);
+        
+        if (empresaSalva && response.find(emp => emp.id === empresaSalva.id)) {
+          // Se há uma empresa salva e ela ainda existe, usar ela
+          setEmpresaSelecionada(empresaSalva);
+        } else if (user?.papel?.nome === 'Proprietário' && response.length > 0) {
+          // Se o usuário é Proprietário e não há empresa salva, selecionar a primeira
+          const primeiraEmpresa = response[0];
+          setEmpresaSelecionada(primeiraEmpresa);
+          saveEmpresaSelecionada(primeiraEmpresa);
         } else if (user?.empresa) {
           // Para outros usuários, usar a empresa deles
           setEmpresaSelecionada(user.empresa);
+          saveEmpresaSelecionada(user.empresa);
         }
       } catch (error) {
-        console.error('Erro ao carregar empresas:', error);
+        console.error('❌ Erro ao carregar empresas:', error);
       } finally {
         setLoading(false);
       }
@@ -106,7 +119,12 @@ export default function Layout({ children }) {
   const handleEmpresaChange = (empresaId) => {
     const empresa = empresas.find(emp => emp.id === empresaId);
     if (empresa) {
+      console.log('🏢 Mudando para empresa:', empresa);
       setEmpresaSelecionada(empresa);
+      saveEmpresaSelecionada(empresa);
+      
+      // Recarregar a página para aplicar os novos dados da empresa
+      window.location.reload();
     }
   };
 

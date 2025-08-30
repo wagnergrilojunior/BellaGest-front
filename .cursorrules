@@ -1,0 +1,58 @@
+# BellaGest - Regras Globais dos Agentes de IA
+
+## Estrutura do Projeto
+```
+bellagest/
+├── frontend/          # React + Vite + Tailwind CSS
+├── backend/           # Python FastAPI + SQLAlchemy
+├── infra/            # Docker Compose
+├── docs/             # Documentação
+└── tests/            # Testes E2E (Playwright)
+```
+
+## Convenções Globais
+
+### Nomenclatura
+- **Arquivos**: kebab-case (ex: `user-service.py`)
+- **Componentes React**: PascalCase (ex: `UserProfile.jsx`)
+- **Funções/variáveis**: camelCase (ex: `getUserData`)
+- **Constantes**: UPPER_SNAKE_CASE (ex: `API_BASE_URL`)
+- **Classes Python**: PascalCase (ex: `UserService`)
+- **Endpoints**: kebab-case (ex: `/api/v1/user-profile`)
+
+### Estrutura de Commits
+```
+tipo(escopo): descrição curta
+
+Descrição detalhada do que foi alterado e por quê.
+
+Tipos: feat, fix, docs, style, refactor, test, chore
+Escopos: frontend, backend, infra, docs
+```
+
+### Padrões de Código
+- **Frontend**: ESLint + Prettier
+- **Backend**: Black + isort + mypy
+- **Testes**: 100% cobertura em funções críticas
+- **Documentação**: JSDoc para React, docstrings para Python
+
+### Responsabilidades por Agente
+- **Backend**: API, autenticação, banco de dados, validações
+- **Frontend**: UI/UX, estado, navegação, integração com API
+- **Design System**: Componentes, tokens, temas, acessibilidade
+- **QA**: Testes E2E, contratos de API, validação de fluxos
+
+### Regras de Integração
+1. Nenhum agente deve modificar arquivos fora do seu escopo
+2. Mudanças que impactem outros agentes devem ser documentadas
+3. Contratos de API devem ser validados pelo agente QA
+4. Design tokens devem ser aprovados pelo agente Design System
+
+### Definition of Done (DoD)
+- [ ] Código revisado e testado
+- [ ] Documentação atualizada
+- [ ] Testes passando
+- [ ] Sem breaking changes não documentados
+- [ ] Performance verificada
+- [ ] Acessibilidade validada (frontend)
+- [ ] Segurança verificada (backend)
